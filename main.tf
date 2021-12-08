@@ -39,6 +39,12 @@ resource "aws_subnet" "project-2" {
     Name = "subnet-project-2"
   }
 }
+/*
+  resource "aws_route_table_association" "project" {
+  subnet_id      = aws_subnet.project-0.id
+  route_table_id = aws_route_table.project.id
+}
+*/
 
 resource "aws_internet_gateway" "project" {
   vpc_id = aws_vpc.project.id
