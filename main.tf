@@ -28,7 +28,37 @@ resource "aws_vpc" "project" {
     Name = "subnet-project-1"
   }
 }
+/*
+  resource "aws_route_table_association" "project1" {
+  subnet_id      = aws_subnet.project-1.id
+  route_table_id = aws_route_table.project.id
+}
+resource "aws_security_group" "project" {
+  name        = "Ec2-Security-group"
+  description = "Allow  http inbound traffic"
+  vpc_id      = aws_vpc.project.id
 
+  ingress {
+      description      = "Http from VPC"
+      from_port        = 80
+      to_port          = 80
+      protocol         = "tcp"
+      security_groups =  [aws_security_group.project-lb.id]
+    }
+  
+
+  egress {
+      from_port        = 0
+      to_port          = 0
+      protocol         = "-1"
+      cidr_blocks      = ["0.0.0.0/0"]
+    }
+  
+  tags = {
+    Name = "Ec2-Security-group"
+  }
+}
+*/
 resource "aws_subnet" "project-2" {
   vpc_id     = aws_vpc.project.id
   cidr_block = "10.158.16.128/26"
